@@ -1,0 +1,2 @@
+# pip requirements for the readthedocs
+mkdocs-material>=4.4.0

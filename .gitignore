@@ -2,5 +2,4 @@
 /.vscode/*
 
 # generated docs
-/docs/_build/
 /src/mnist_testing.py
