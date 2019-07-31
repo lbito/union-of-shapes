@@ -1,0 +1,6 @@
+site_name: Icon Generation
+nav:
+- 'Home': 'index.md'
+- 'Project Information': 'project-info.md'
+- 'About': 'about.md'
+theme: 'material'
