@@ -3,3 +3,5 @@
 
 # generated docs
 /src/mnist_testing.py
+/docs/imgs/*
+/testing/*
