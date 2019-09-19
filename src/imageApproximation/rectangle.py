@@ -4,6 +4,7 @@ NUM_ANGLES = 4
 
 
 class Rectangle:
+    name = "rectangle"
     x = 0
     y = 0
     w = 0
@@ -22,9 +23,12 @@ class Rectangle:
         if (atr) == 0: self.x += direction
         if (atr) == 1: self.y += direction
         if (atr) == 2: self.w = abs(self.w + direction)
-        if (atr) == 3: self.h += abs(self.h + direction)
+        if (atr) == 3: self.h = abs(self.h + direction)
         if (atr) == 4: self.theta += (direction * NUM_ANGLES) / 360
 
     # 2d array bitmap rendering
     def render(self, image_size):
         pass
+
+    def __str__(self):
+        return "{0}{1}{2}{3}".format(self.x, self.y, self.w, self.h)
