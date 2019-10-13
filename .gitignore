@@ -1,8 +1,9 @@
 /data/*
 /.vscode/*
-
+__pycache__/
 # generated docs
 /src/mnist_testing.py
 /docs/imgs/*
 /testing/*
 .idea/
+__pycache__

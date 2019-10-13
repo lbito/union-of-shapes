@@ -20,8 +20,8 @@ class Rectangle:
     def update_params(self):
         atr = np.random.randint(0, 5)
         direction = np.random.choice([-1, 1])
-        if (atr) == 0: self.x += direction
-        if (atr) == 1: self.y += direction
+        if (atr) == 0: self.x = abs(self.x + direction)
+        if (atr) == 1: self.y = abs(self.y + direction)
         if (atr) == 2: self.w = abs(self.w + direction)
         if (atr) == 3: self.h = abs(self.h + direction)
         if (atr) == 4: self.theta += (direction * NUM_ANGLES) / 360

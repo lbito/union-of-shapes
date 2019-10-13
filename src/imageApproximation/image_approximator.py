@@ -7,6 +7,8 @@ from PIL import Image, ImageDraw
 from rectangle import Rectangle
 from loss_functions import Loss_one
 from ellipse import Ellipse
+from triangle import Triangle
+
 
 IMAGE_SIZE = (50,50)
 FLAT_DIM = IMAGE_SIZE[0] * IMAGE_SIZE[1]
@@ -14,7 +16,7 @@ N_ITERATIONS = 1000
 N_SHAPES = 5
 CONVERGENCE_THRESHOLD = 0.8
 
-loss_function = Loss_one(5).compute_loss
+loss_function = sklearn.metrics.mean_squared_error
 
 class ImageApproximator():
     ground_truth = []
@@ -39,6 +41,8 @@ class ImageApproximator():
                 draw.rectangle([shape.x, shape.y, shape.x + shape.w, shape.y + shape.h], 1)
             elif (shape.name =="ellipse"):
                 draw.ellipse([shape.x, shape.y, shape.x + shape.w, shape.y + shape.h], 1)
+            elif (shape.name =="triangle"):
+                draw.polygon([(shape.x1,shape.y1),(shape.x2,shape.y2),(shape.x3,shape.y3)], 1)
         current_render = np.array(im)
         masked_shape = self.ground_truth - current_render
         masked_shape = masked_shape.clip(min=0)
@@ -59,7 +63,8 @@ class ImageApproximator():
         #pick shape and init and init at centroid
         shapes = [
             Rectangle([centroid,1,1,0]),
-            Ellipse([centroid,2,2])
+            Ellipse([centroid,3,3]),
+            Triangle([centroid,(centroid[0]+2,centroid[1]), ((centroid[0]+1,centroid[1]+2))])
         ]
 
         shapes_losses = []
@@ -79,7 +84,7 @@ class ImageApproximator():
                     current_loss = new_loss
                 del self.shapes[-1]
             shapes_losses.append((shape, current_loss))
-
+            print(current_loss)
         min_shape_idx = np.argmin([x[1] for x in shapes_losses])
         self.shapes.append(shapes_losses[min_shape_idx][0])
 
@@ -95,6 +100,8 @@ class ImageApproximator():
                 draw.rectangle([shape.x, shape.y, shape.x + shape.w, shape.y + shape.h], 1)
             elif (shape.name =="ellipse"):
                 draw.ellipse([shape.x, shape.y, shape.x + shape.w, shape.y + shape.h], 1)
+            elif (shape.name =="triangle"):
+                draw.polygon([(shape.x1,shape.y1),(shape.x2,shape.y2),(shape.x3,shape.y3)], 1)
 
         rendered_rect = np.array(im, dtype=np.int32)
 
@@ -111,5 +118,7 @@ class ImageApproximator():
                 draw.rectangle([shape.x, shape.y, shape.x + shape.w, shape.y + shape.h], 1)
             elif (shape.name =="ellipse"):
                 draw.ellipse([shape.x, shape.y, shape.x + shape.w, shape.y + shape.h], 1)
+            elif (shape.name =="triangle"):
+                draw.polygon([(shape.x1,shape.y1),(shape.x2,shape.y2),(shape.x3,shape.y3)], 1)
         plt.imshow(np.array(im))
         plt.show()
