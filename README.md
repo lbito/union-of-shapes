@@ -1,2 +1,2 @@
-# icon-generation-svg
-Using generative adversial networks to produce SVG representation of images.
+# Union of shapes
+Iterative greedy algorithm to produce a layered vector graphic representation of raster images.
