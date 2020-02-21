@@ -1,9 +1,10 @@
 import numpy as np
+from shape import Shape
+
 
 NUM_ANGLES = 4
 
-
-class Triangle:
+class Triangle(Shape):
     name = "triangle"
     x1 = 0
     y1 = 0
@@ -28,8 +29,9 @@ class Triangle:
         if (atr) == 5: self.y3 = abs(self.y3 + direction)
 
     # 2d array bitmap rendering
-    def render(self, image_size):
-        pass
+    def render(self, imdraw):
+        imdraw.polygon([(self.x1,self.y1),(self.x2,self.y2),(self.x3,self.y3)], 1)
+        return
 
     def __str__(self):
         return "{0}{1}{2}{3}{4}{5}".format(self.x1, self.y1, self.x2, self.y2, self.x3, self.y3)

@@ -1,8 +1,8 @@
 import numpy as np
+from shape import Shape
 
 
-
-class Ellipse:
+class Ellipse(Shape):
     name = "ellipse"
     x = 0
     y = 0
@@ -21,3 +21,7 @@ class Ellipse:
         if (atr) == 1: self.y += direction
         if (atr) == 2: self.w = abs(self.w + direction)
         if (atr) == 2: self.h = abs(self.h + direction)
+
+    def render(self, imdraw):
+        imdraw.ellipse([self.x, self.y, self.x + self.w, self.y + self.h], 1)
+        return

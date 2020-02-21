@@ -1,9 +1,9 @@
 import numpy as np
+from shape import Shape
 
 NUM_ANGLES = 4
 
-
-class Rectangle:
+class Rectangle(Shape):
     name = "rectangle"
     x = 0
     y = 0
@@ -27,8 +27,9 @@ class Rectangle:
         if (atr) == 4: self.theta += (direction * NUM_ANGLES) / 360
 
     # 2d array bitmap rendering
-    def render(self, image_size):
-        pass
+    def render(self, draw):
+        draw.rectangle([self.x, self.y, self.x + self.w, self.y + self.h], 1)
+        return
 
     def __str__(self):
-        return "{0}{1}{2}{3}".format(self.x, self.y, self.w, self.h)
+        return "{0}_{1}_{2}_{3}".format(self.x, self.y, self.w, self.h)
